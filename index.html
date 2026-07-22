@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stanley Muriuki Mburu — Journalist &amp; Producer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --ink:#14171f;
+  --ink-2:#1b1f29;
+  --paper:#f2eee3;
+  --paper-2:#e9e3d3;
+  --on-air:#e6483f;
+  --signal:#d4a24c;
+  --slate:#9198a8;
+  --slate-dark:#5b6272;
+  --line-dark:rgba(242,238,227,0.12);
+  --line-light:rgba(20,23,31,0.12);
+}
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+html{scroll-behavior:smooth;}
+
+body{
+  background:var(--ink);
+  color:var(--paper);
+  font-family:'Inter',sans-serif;
+  overflow-x:hidden;
+}
+
+img,svg{display:block;max-width:100%;}
+
+.eyebrow{
+  font-family:'Oswald',sans-serif;
+  font-weight:600;
+  letter-spacing:0.28em;
+  text-transform:uppercase;
+  font-size:0.72rem;
+}
+
+h1,h2,h3{font-family:'Oswald',sans-serif;}
+
+.mono{font-family:'JetBrains Mono',monospace;}
+
+/* ---------- ON AIR indicator (signature element) ---------- */
+.on-air{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+}
+.on-air-dot{
+  width:9px;height:9px;border-radius:50%;
+  background:var(--on-air);
+  box-shadow:0 0 0 0 rgba(230,72,63,0.6);
+  animation:pulse 1.8s infinite;
+  flex-shrink:0;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 rgba(230,72,63,0.55);}
+  70%{box-shadow:0 0 0 9px rgba(230,72,63,0);}
+  100%{box-shadow:0 0 0 0 rgba(230,72,63,0);}
+}
+
+/* ---------- NAV ---------- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:22px 6vw;
+  background:linear-gradient(to bottom, rgba(20,23,31,0.92), rgba(20,23,31,0));
+  transition:background .3s ease, backdrop-filter .3s ease;
+}
+nav.scrolled{
+  background:rgba(20,23,31,0.86);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line-dark);
+}
+.logo{
+  font-family:'Oswald',sans-serif;font-weight:700;
+  letter-spacing:0.05em;font-size:1.05rem;color:var(--paper);
+  text-decoration:none;
+}
+.logo span{color:var(--on-air);}
+.nav-links{
+  display:flex;gap:34px;list-style:none;
+}
+.nav-links a{
+  color:var(--slate);
+  text-decoration:none;
+  font-family:'Oswald',sans-serif;
+  font-size:0.78rem;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  transition:color .2s ease;
+}
+.nav-links a:hover, .nav-links a:focus-visible{color:var(--paper);}
+.nav-toggle{display:none;background:none;border:none;color:var(--paper);font-size:1.4rem;cursor:pointer;}
+
+/* ---------- HERO ---------- */
+.hero{
+  min-height:100svh;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:0 6vw;
+  position:relative;
+  border-bottom:1px solid var(--line-dark);
+}
+.hero::before{
+  content:"";
+  position:absolute;inset:0;
+  background-image:repeating-linear-gradient(180deg, rgba(255,255,255,0.025) 0px, rgba(255,255,255,0.025) 1px, transparent 1px, transparent 3px);
+  pointer-events:none;
+}
+.hero-eyebrow{color:var(--on-air);margin-bottom:26px;}
+.hero h1{
+  font-family:'Anton',sans-serif;
+  font-weight:400;
+  font-size:clamp(2.6rem, 9vw, 7.4rem);
+  line-height:0.94;
+  letter-spacing:0.005em;
+  text-transform:uppercase;
+  color:var(--paper);
+  max-width:16ch;
+}
+.hero-roles{
+  margin-top:30px;
+  display:flex;flex-wrap:wrap;
+  gap:0;
+  font-family:'Oswald',sans-serif;
+  font-size:clamp(0.95rem,1.6vw,1.25rem);
+  color:var(--slate);
+  letter-spacing:0.02em;
+}
+.hero-roles span{
+  padding:0 16px;
+  border-right:1px solid var(--line-dark);
+}
+.hero-roles span:first-child{padding-left:0;}
+.hero-roles span:last-child{border-right:none;}
+.hero-tag{
+  margin-top:38px;max-width:56ch;
+  font-size:1.02rem;line-height:1.65;color:#cfd3dd;
+}
+.scroll-cue{
+  position:absolute;bottom:34px;left:6vw;
+  display:flex;align-items:center;gap:10px;
+  color:var(--slate-dark);font-size:0.7rem;
+  letter-spacing:0.2em;text-transform:uppercase;
+  font-family:'Oswald',sans-serif;
+}
+.scroll-cue .bar{width:1px;height:32px;background:var(--slate-dark);position:relative;overflow:hidden;}
+.scroll-cue .bar::after{
+  content:"";position:absolute;top:-100%;left:0;width:100%;height:100%;
+  background:var(--on-air);
+  animation:scrollbar 2.2s ease-in-out infinite;
+}
+@keyframes scrollbar{
+  0%{top:-100%;}
+  50%{top:100%;}
+  50.01%{top:-100%;}
+  100%{top:-100%;}
+}
+
+/* ---------- SECTION SHELL ---------- */
+section{
+  padding:120px 6vw;
+  position:relative;
+}
+.section-light{background:var(--paper);color:var(--ink);}
+.section-dark{background:var(--ink);color:var(--paper);}
+.section-head{
+  display:flex;align-items:baseline;gap:18px;
+  margin-bottom:64px;
+  flex-wrap:wrap;
+}
+.section-head .eyebrow{color:var(--on-air);}
+.section-light .section-head .eyebrow{color:var(--on-air);}
+.section-head h2{
+  font-size:clamp(1.8rem,3.4vw,2.7rem);
+  text-transform:uppercase;
+  letter-spacing:0.01em;
+}
+.section-head .rule{
+  flex:1;height:1px;background:var(--line-dark);
+  min-width:60px;
+}
+.section-light .rule{background:var(--line-light);}
+
+.reveal{
+  opacity:0;transform:translateY(26px);
+  transition:opacity .7s ease, transform .7s ease;
+}
+.reveal.is-visible{opacity:1;transform:translateY(0);}
+
+/* ---------- ABOUT ---------- */
+.about-grid{
+  display:grid;grid-template-columns:1.3fr 0.9fr;gap:70px;
+  align-items:start;
+}
+.about-grid p{
+  font-size:1.12rem;line-height:1.85;margin-bottom:22px;
+  color:#2b2f38;
+}
+.about-card{
+  background:var(--ink);color:var(--paper);
+  padding:36px 32px;
+  border-left:3px solid var(--on-air);
+}
+.about-card h3{
+  font-size:0.85rem;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--signal);margin-bottom:18px;
+}
+.about-card ul{list-style:none;}
+.about-card li{
+  padding:10px 0;border-top:1px solid var(--line-dark);
+  font-family:'JetBrains Mono',monospace;font-size:0.85rem;
+  display:flex;justify-content:space-between;gap:10px;color:#d7dae2;
+}
+.about-card li:first-of-type{border-top:none;}
+
+/* ---------- RUNDOWN (Experience) ---------- */
+.rundown-sheet{border-top:1px solid var(--line-dark);}
+.rundown-row{
+  display:grid;
+  grid-template-columns:110px 1fr;
+  gap:36px;
+  padding:38px 0;
+  border-bottom:1px solid var(--line-dark);
+}
+.rundown-seg{
+  font-family:'JetBrains Mono',monospace;
+  color:var(--on-air);font-size:0.95rem;
+}
+.rundown-seg .seg-label{display:block;color:var(--slate-dark);font-size:0.65rem;letter-spacing:0.14em;margin-bottom:6px;text-transform:uppercase;}
+.rundown-role{
+  font-size:clamp(1.2rem,2.1vw,1.55rem);
+  text-transform:uppercase;
+  margin-bottom:4px;
+}
+.rundown-outlet{
+  color:var(--signal);font-family:'Oswald',sans-serif;
+  font-size:0.95rem;letter-spacing:0.03em;margin-bottom:22px;
+}
+.rundown-cols{
+  display:grid;grid-template-columns:1fr 1fr;gap:30px;
+}
+.rundown-cols h4{
+  font-family:'Oswald',sans-serif;font-size:0.7rem;
+  letter-spacing:0.16em;text-transform:uppercase;color:var(--slate);
+  margin-bottom:12px;
+}
+.rundown-cols ul{list-style:none;}
+.rundown-cols li{
+  position:relative;padding-left:18px;margin-bottom:10px;
+  font-size:0.95rem;line-height:1.5;color:#cfd3dd;
+}
+.rundown-cols li::before{
+  content:"";position:absolute;left:0;top:0.55em;width:6px;height:1px;background:var(--slate-dark);
+}
+
+/* ---------- STATS / WAVEFORM ---------- */
+.stats-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:40px;
+  margin-bottom:70px;
+}
+.stat-card{padding:0;}
+.stat-num{
+  font-family:'JetBrains Mono',monospace;font-weight:700;
+  font-size:clamp(2rem,4vw,2.7rem);color:var(--ink);
+  margin-bottom:6px;
+}
+.stat-label{
+  font-family:'Oswald',sans-serif;font-size:0.78rem;
+  letter-spacing:0.1em;text-transform:uppercase;color:#5b6272;
+  margin-bottom:20px;
+}
+.wave{
+  display:flex;align-items:flex-end;gap:3px;height:46px;
+}
+.wave i{
+  flex:1;background:var(--on-air);border-radius:1px;
+  transform:scaleY(0.08);transform-origin:bottom;
+  transition:transform .6s cubic-bezier(.2,.8,.3,1);
+}
+.stat-card:nth-child(2) .wave i{background:var(--signal);}
+.stat-card:nth-child(3) .wave i{background:var(--ink);opacity:0.75;}
+.stats-grid.is-visible .wave i{transform:scaleY(var(--h));}
+
+.tag-row{display:flex;flex-wrap:wrap;gap:10px;}
+.tag{
+  font-family:'Oswald',sans-serif;font-size:0.8rem;
+  letter-spacing:0.04em;
+  padding:9px 16px;
+  border:1px solid var(--line-light);
+  color:#2b2f38;
+}
+.section-dark .tag{border-color:var(--line-dark);color:#d7dae2;}
+
+/* ---------- LEADERSHIP + ACHIEVEMENTS ---------- */
+.split-two{display:grid;grid-template-columns:1fr 1fr;gap:70px;}
+.list-plain{list-style:none;}
+.list-plain li{
+  display:flex;gap:18px;padding:16px 0;
+  border-bottom:1px solid var(--line-dark);
+  font-size:1.02rem;color:#d7dae2;line-height:1.5;
+}
+.list-plain li .mono{color:var(--signal);font-size:0.85rem;flex-shrink:0;padding-top:2px;}
+
+/* ---------- SKILLS ---------- */
+.skills-cols{display:grid;grid-template-columns:1fr 1fr;gap:60px;}
+.skills-cols h3{
+  font-size:0.85rem;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--on-air);margin-bottom:22px;
+}
+
+/* ---------- STRENGTHS ---------- */
+.strengths-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:var(--line-dark);
+  border:1px solid var(--line-dark);
+}
+.strength-cell{
+  background:var(--ink);padding:26px 20px;
+  font-family:'Oswald',sans-serif;font-size:0.95rem;
+  letter-spacing:0.02em;color:#d7dae2;
+}
+
+/* ---------- OBJECTIVE ---------- */
+.objective{
+  max-width:52ch;margin:0 auto;text-align:center;
+}
+.objective .eyebrow{display:block;margin-bottom:26px;color:var(--on-air);}
+.objective p{
+  font-family:'Oswald',sans-serif;font-weight:400;
+  font-size:clamp(1.3rem,2.6vw,1.9rem);
+  line-height:1.5;color:var(--ink);
+}
+
+/* ---------- CONTACT / FOOTER ---------- */
+.contact{
+  padding-top:120px;padding-bottom:60px;
+  text-align:center;
+}
+.contact h2{
+  font-family:'Anton',sans-serif;font-weight:400;
+  font-size:clamp(2.2rem,7vw,4.6rem);
+  text-transform:uppercase;color:var(--paper);
+  margin-bottom:30px;
+}
+.contact-links{
+  display:flex;justify-content:center;gap:36px;flex-wrap:wrap;
+  margin-bottom:80px;
+}
+.contact-links a{
+  color:var(--paper);text-decoration:none;
+  font-family:'JetBrains Mono',monospace;font-size:0.95rem;
+  padding-bottom:4px;border-bottom:1px solid var(--line-dark);
+  transition:border-color .2s ease, color .2s ease;
+}
+.contact-links a:hover, .contact-links a:focus-visible{border-color:var(--on-air);color:var(--on-air);}
+footer{
+  text-align:center;padding-top:30px;border-top:1px solid var(--line-dark);
+  color:var(--slate-dark);font-size:0.78rem;font-family:'Oswald',sans-serif;
+  letter-spacing:0.08em;text-transform:uppercase;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:860px){
+  .about-grid, .split-two, .skills-cols{grid-template-columns:1fr;gap:40px;}
+  .stats-grid{grid-template-columns:1fr;gap:50px;}
+  .rundown-row{grid-template-columns:1fr;gap:14px;}
+  .rundown-cols{grid-template-columns:1fr;}
+  .strengths-grid{grid-template-columns:repeat(2,1fr);}
+  .nav-links{
+    position:fixed;top:0;right:0;height:100svh;width:min(78vw,320px);
+    background:var(--ink-2);flex-direction:column;justify-content:center;
+    gap:30px;padding:0 40px;
+    transform:translateX(100%);transition:transform .35s ease;
+    border-left:1px solid var(--line-dark);
+  }
+  .nav-links.open{transform:translateX(0);}
+  .nav-toggle{display:block;}
+}
+@media (max-width:520px){
+  section{padding:90px 6vw;}
+  .strengths-grid{grid-template-columns:repeat(2,1fr);}
+  .hero-roles span{padding:0 12px 6px 0;border-right:none;width:100%;border-bottom:1px solid var(--line-dark);}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important;transition:none !important;}
+  .reveal{opacity:1;transform:none;}
+  .wave i{transform:scaleY(var(--h)) !important;}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#top" class="logo">S<span>.</span>M<span>.</span>M</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#rundown">Rundown</a></li>
+    <li><a href="#content">Content</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-eyebrow on-air"><span class="on-air-dot"></span> ON AIR</div>
+  <h1>Stanley<br>Muriuki<br>Mburu</h1>
+  <div class="hero-roles">
+    <span>Journalist</span><span>Producer</span><span>Communications</span><span>Content Creator</span>
+  </div>
+  <p class="hero-tag">A communications professional and journalist telling stories that inform, educate, and inspire — building communities through radio, digital media, and leadership.</p>
+  <div class="scroll-cue"><span class="bar"></span> Scroll</div>
+</header>
+
+<section class="section-light" id="about">
+  <div class="section-head"><span class="eyebrow">01 — About</span><span class="rule"></span></div>
+  <div class="about-grid">
+    <div class="reveal">
+      <p>I am a communications professional and journalist with experience in content creation, media production, communications, leadership, and team management. I enjoy telling stories that inform, educate, and inspire while building communities through digital media.</p>
+      <p>My background spans journalism, radio production, business management, and social media strategy. I thrive in fast-paced environments where creativity, organization, and strong communication are essential.</p>
+    </div>
+    <div class="about-card reveal">
+      <h3>Career Objective</h3>
+      <ul>
+        <li><span>Brand</span><span>Creative &amp; results-driven</span></li>
+        <li><span>Craft</span><span>Journalism + media production</span></li>
+        <li><span>Reach</span><span>Digital content expertise</span></li>
+        <li><span>Impact</span><span>Engaged audiences, measurable growth</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section-dark" id="rundown">
+  <div class="section-head"><span class="eyebrow">02 — Programme Rundown</span><span class="rule"></span></div>
+  <div class="rundown-sheet">
+
+    <div class="rundown-row reveal">
+      <div class="rundown-seg"><span class="seg-label">Segment</span>SEG.02</div>
+      <div>
+        <div class="rundown-role">News Editor &amp; Drive Show Producer</div>
+        <div class="rundown-outlet">MBCI Radio Kenya</div>
+        <div class="rundown-cols">
+          <div>
+            <h4>On the Desk</h4>
+            <ul>
+              <li>Produced three radio programmes every week</li>
+              <li>Edited news bulletins</li>
+              <li>Coordinated presenters and production teams</li>
+              <li>Wrote scripts and prepared production schedules</li>
+              <li>Ensured quality and timely broadcasts</li>
+            </ul>
+          </div>
+          <div>
+            <h4>On Air</h4>
+            <ul>
+              <li>3 programmes produced weekly, on schedule</li>
+              <li>Consistent quality across live broadcasts</li>
+              <li>Reliable coordination across presenters &amp; crew</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rundown-row reveal">
+      <div class="rundown-seg"><span class="seg-label">Segment</span>SEG.01</div>
+      <div>
+        <div class="rundown-role">Manager</div>
+        <div class="rundown-outlet">Truestone Limited</div>
+        <div class="rundown-cols">
+          <div>
+            <h4>Responsibilities</h4>
+            <ul>
+              <li>Supervised daily business operations</li>
+              <li>Managed staff performance and customer service</li>
+              <li>Oversaw inventory and stock management</li>
+              <li>Coordinated sales operations</li>
+              <li>Maintained operational efficiency</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Achievements</h4>
+            <ul>
+              <li>Supervised a team of 15 employees</li>
+              <li>Grew monthly sales from ~KES 900,000 to KES 1.5 million</li>
+              <li>Improved customer satisfaction and operational performance</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section-light" id="content">
+  <div class="section-head"><span class="eyebrow">03 — Content Creation</span><span class="rule"></span></div>
+  <p class="reveal" style="max-width:60ch;font-size:1.08rem;line-height:1.8;color:#2b2f38;margin-bottom:60px;">
+    I have built a growing digital platform through authentic storytelling, educational content, and conversations around social issues, lifestyle, and current affairs — creating meaningful engagement while building an active online community.
+  </p>
+
+  <div class="stats-grid reveal" id="statsGrid">
+    <div class="stat-card">
+      <div class="stat-num">0 → 6,000+</div>
+      <div class="stat-label">Followers Grown</div>
+      <div class="wave">
+        <i style="--h:0.15"></i><i style="--h:0.25"></i><i style="--h:0.4"></i><i style="--h:0.55"></i>
+        <i style="--h:0.7"></i><i style="--h:0.85"></i><i style="--h:1"></i><i style="--h:0.9"></i>
+        <i style="--h:0.75"></i><i style="--h:0.95"></i><i style="--h:1"></i>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">2.0M+</div>
+      <div class="stat-label">Video Views</div>
+      <div class="wave">
+        <i style="--h:0.3"></i><i style="--h:0.55"></i><i style="--h:0.4"></i><i style="--h:0.8"></i>
+        <i style="--h:0.6"></i><i style="--h:1"></i><i style="--h:0.7"></i><i style="--h:0.9"></i>
+        <i style="--h:0.5"></i><i style="--h:0.85"></i><i style="--h:0.65"></i>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num">175K+</div>
+      <div class="stat-label">Likes Earned</div>
+      <div class="wave">
+        <i style="--h:0.5"></i><i style="--h:0.3"></i><i style="--h:0.65"></i><i style="--h:0.45"></i>
+        <i style="--h:0.9"></i><i style="--h:0.55"></i><i style="--h:0.75"></i><i style="--h:1"></i>
+        <i style="--h:0.6"></i><i style="--h:0.4"></i><i style="--h:0.8"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="reveal">
+    <h4 style="font-family:'Oswald',sans-serif;font-size:0.78rem;letter-spacing:0.14em;text-transform:uppercase;color:#5b6272;margin-bottom:18px;">Content Skills</h4>
+    <div class="tag-row">
+      <span class="tag">Content Strategy</span><span class="tag">Short-form Video Production</span>
+      <span class="tag">Script Writing</span><span class="tag">Storytelling</span>
+      <span class="tag">Social Media Management</span><span class="tag">Audience Engagement</span>
+      <span class="tag">Public Speaking</span><span class="tag">Podcast Production</span>
+      <span class="tag">Interview Hosting</span><span class="tag">Trend Analysis</span>
+      <span class="tag">Brand Storytelling</span>
+    </div>
+  </div>
+</section>
+
+<section class="section-dark">
+  <div class="section-head"><span class="eyebrow">04 — Leadership &amp; Achievements</span><span class="rule"></span></div>
+  <div class="split-two">
+    <div class="reveal">
+      <h3 style="font-size:0.85rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--signal);margin-bottom:22px;">Leadership Highlights</h3>
+      <ul class="list-plain">
+        <li><span class="mono">→</span> Led and supervised 15 employees</li>
+        <li><span class="mono">→</span> Coordinated 12 successful events</li>
+        <li><span class="mono">→</span> Produced 3 radio programmes every week</li>
+        <li><span class="mono">→</span> Managed business operations and team performance</li>
+        <li><span class="mono">→</span> Delivered measurable growth through strategic leadership</li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <h3 style="font-size:0.85rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--on-air);margin-bottom:22px;">Key Achievements</h3>
+      <ul class="list-plain">
+        <li><span class="mono">01</span> Increased monthly sales from KES 900,000 to KES 1.5 million</li>
+        <li><span class="mono">02</span> Grew a digital audience from 0 to 6,000+ followers</li>
+        <li><span class="mono">03</span> Generated 2.0+ million views through organic content</li>
+        <li><span class="mono">04</span> Achieved 175,000+ likes across social media platforms</li>
+        <li><span class="mono">05</span> Successfully supervised 15 staff members</li>
+        <li><span class="mono">06</span> Coordinated 12 successful events</li>
+        <li><span class="mono">07</span> Produced 3 radio programmes weekly</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section-light" id="skills">
+  <div class="section-head"><span class="eyebrow">05 — Skills</span><span class="rule"></span></div>
+  <div class="skills-cols">
+    <div class="reveal">
+      <h3>Core Skills</h3>
+      <div class="tag-row">
+        <span class="tag">Journalism</span><span class="tag">Communications</span><span class="tag">Media Production</span>
+        <span class="tag">Content Creation</span><span class="tag">Social Media Management</span><span class="tag">Digital Marketing</span>
+        <span class="tag">Video Production</span><span class="tag">Photography</span><span class="tag">Videography</span>
+        <span class="tag">Script Writing</span><span class="tag">Public Speaking</span><span class="tag">Leadership</span>
+        <span class="tag">Team Management</span><span class="tag">Event Coordination</span><span class="tag">Project Coordination</span>
+        <span class="tag">Customer Relations</span>
+      </div>
+    </div>
+    <div class="reveal">
+      <h3>Professional Strengths</h3>
+      <div class="strengths-grid">
+        <div class="strength-cell">Leadership</div><div class="strength-cell">Communication</div>
+        <div class="strength-cell">Creativity</div><div class="strength-cell">Strategic Thinking</div>
+        <div class="strength-cell">Storytelling</div><div class="strength-cell">Team Collaboration</div>
+        <div class="strength-cell">Problem Solving</div><div class="strength-cell">Adaptability</div>
+        <div class="strength-cell">Time Management</div><div class="strength-cell">Organization</div>
+        <div class="strength-cell">Attention to Detail</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-dark">
+  <div class="objective reveal">
+    <span class="eyebrow" style="color:var(--signal);">Sign-off</span>
+  </div>
+  <div class="objective reveal" style="margin-top:0;">
+    <p style="color:var(--paper);">To contribute to organizations seeking a creative, results-driven communications professional who combines journalism, leadership, media production, and digital content expertise to build strong brands, engage audiences, and deliver measurable impact.</p>
+  </div>
+</section>
+
+<section class="section-dark contact" id="contact">
+  <div class="on-air" style="justify-content:center;margin-bottom:22px;color:var(--on-air);"><span class="on-air-dot"></span> <span class="eyebrow">Let's Connect</span></div>
+  <h2>Get In Touch</h2>
+  <div class="contact-links">
+    <a href="mailto:hello@stanleymburu.com">hello@stanleymburu.com</a>
+    <a href="tel:+254700000000">+254 700 000 000</a>
+    <a href="#">LinkedIn</a>
+  </div>
+  <footer>© 2026 Stanley Muriuki Mburu — Journalist, Producer &amp; Content Creator</footer>
+</section>
+
+<script>
+// Nav scroll state
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// Mobile nav toggle
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+// Reveal on scroll
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15 });
+revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
